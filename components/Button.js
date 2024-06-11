@@ -19,7 +19,12 @@ export const Button = styled.button`
     background-color: ${colors.primaryDark};
     color: ${colors.white};
   }
-`;
+
+  &:focus {
+    outline: none;
+  }
+  
+  `;
 
 export const ButtonLight = styled(Button)`
   color: ${colors.white};

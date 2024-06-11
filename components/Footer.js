@@ -1,4 +1,4 @@
-
+"use client";
 import styled from 'styled-components';
 import { colors, fontSizesBody} from '../app/Constants';
 import Logo from '../public/images/logo.svg'
