@@ -15,6 +15,7 @@ export const fontSizesBody = {
 export const fontSizesHeading = {
   100: "1rem",
   200: "1.25rem",
-  300: "3rem",
-  400: "4rem",
+  300: "2rem",
+  400: "3rem",
+  500: "4rem",
 };

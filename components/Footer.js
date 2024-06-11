@@ -33,6 +33,9 @@ const FooterContainer = styled.footer`
 
   @media (max-width: 768px) {
     grid-template-columns: 1fr;
+    padding: 40px 20px;
+    justify-items: center;
+    text-align: center;
   }
 `;
 

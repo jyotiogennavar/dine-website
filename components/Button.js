@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { colors, fontSizesBody} from '../app/Constants';
 
 
-const Button = styled.button`
+export const Button = styled.button`
   background-color: transparent;
   color: ${colors.primaryDark};
   font-weight: bold;
@@ -21,4 +21,14 @@ const Button = styled.button`
   }
 `;
 
-export default Button;
+export const ButtonLight = styled(Button)`
+  color: ${colors.white};
+  border: 2px solid ${colors.white};
+
+  &:hover {
+    background-color:${colors.white};
+    color: ${colors.primaryDark};
+  }
+`;
+
+
