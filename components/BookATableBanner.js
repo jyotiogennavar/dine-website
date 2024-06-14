@@ -33,28 +33,26 @@ const BannerContainer = styled.section`
 margin-top: 5rem;
   position: relative;
   width: 100%;
-  /* background-size: cover;
-  background-position: center;
-  background-image: url('/images/booking/hero-bg-tablet.jpg'); */
 
-  height: 400px; /* Adjust the height as needed */
+
+  height: 400px; 
 
   @media (min-width: 768px) {
-    height: 300px; /* Adjust the height as needed for medium screens */
-    /* background-image: url('/images/booking/hero-bg-tablet.jpg'); */
+    height: 300px; 
+ 
   }
 
   @media (min-width: 1024px) {
-    height: 200px; /* Adjust the height as needed for large screens */
-    /* background-image: url('/images/booking/hero-bg-desktop.jpg'); */
+    height: 200px; 
+
   }
 `;
 
 const BannerContent = styled.div`
   position: absolute;
   top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  left: 20%;
+  transform: translate(-12%, -50%);
   text-align: center;
   color: ${colors.white};
 
