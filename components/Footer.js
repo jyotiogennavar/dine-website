@@ -1,25 +1,36 @@
 'use client';
+
 import styled from 'styled-components';
-import { colors, fontSizesBody} from '../app/Constants';
-import Logo from '../public/images/logo.svg'
+import { colors, fontSizesBody } from '../app/Constants';
+import Logo from '../public/images/logo.svg';
 
 const Footer = () => {
   return (
     <FooterContainer>
-     <Logo width={110} height={50}/>
+      <Logo width={110} height={50} />
       <FooterContent>
-        <p>Marthwaite, Sedbergh</p>
-        <p>Cumbria</p>
-        <p>+00 44 123 4567</p>
-      </FooterContent>
-      <FooterContent>
-        <p>Open Times</p>
-        <p>Mon - Fri: 09:00 AM - 10:00 PM</p>
-        <p>Sat - Sun: 09:00 AM - 11:30 PM</p>
+        <Address />
+        <OpenTimes />
       </FooterContent>
     </FooterContainer>
-  )
-}
+  );
+};
+
+const Address = () => (
+  <FooterSection>
+    <p>Marthwaite, Sedbergh</p>
+    <p>Cumbria</p>
+    <p>+00 44 123 4567</p>
+  </FooterSection>
+);
+
+const OpenTimes = () => (
+  <FooterSection>
+    <p>Open Times</p>
+    <p>Mon - Fri: 09:00 AM - 10:00 PM</p>
+    <p>Sat - Sun: 09:00 AM - 11:30 PM</p>
+  </FooterSection>
+);
 
 const FooterContainer = styled.footer`
   display: grid;
@@ -40,18 +51,24 @@ const FooterContainer = styled.footer`
 `;
 
 const FooterContent = styled.div`
-  padding: 20px;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  gap: 20px;
+  align-items: flex-start;
 
+  @media (max-width: 768px) {
+    align-items: center;
+  }
+`;
+
+const FooterSection = styled.div`
   font-size: ${fontSizesBody[100]};
   text-transform: uppercase;
   line-height: 1.5;
+
   p {
     margin-bottom: 10px;
   }
 `;
 
 export default Footer;
-

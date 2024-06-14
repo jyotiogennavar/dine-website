@@ -13,16 +13,7 @@ import HeaderImageTablet from "../public/images/homepage/hero-bg-tablet.jpg";
 const Header = () => {
   return (
     <HeaderContainer>
-      <picture>
-        <source srcSet={HeaderImageDesktop.src} media="(min-width: 1024px)" />
-        <source srcSet={HeaderImageTablet.src} media="(min-width: 768px)" />
-        <Image
-          src={HeaderImageMobile}
-          alt="Header Image"
-          layout="fill"
-          objectFit="cover"
-        />
-      </picture>
+      <HeaderImage />
       <HeaderContent>
         <Logo width={110} height={50} />
         <h1>Exquisite dining since 1989</h1>
@@ -36,10 +27,24 @@ const Header = () => {
   );
 };
 
+const HeaderImage = () => (
+  <picture>
+    <source srcSet={HeaderImageDesktop.src} media="(min-width: 1024px)" />
+    <source srcSet={HeaderImageTablet.src} media="(min-width: 768px)" />
+    <Image
+      src={HeaderImageMobile}
+      alt="Header Image"
+      layout="fill"
+      objectFit="cover"
+    />
+  </picture>
+);
+
 const HeaderContainer = styled.section`
+  position: relative;
   width: 100%;
-  background: ${colors.primaryDark};
   height: 720px;
+  background: ${colors.primaryDark};
 
   @media (min-width: 768px) {
     height: 500px;
@@ -53,18 +58,15 @@ const HeaderContainer = styled.section`
 const HeaderContent = styled.div`
   position: absolute;
   top: 50%;
-  left: 20%;
-  transform: translate(-12%, -50%);
-
+  left: 50%;
+  transform: translate(-50%, -50%);
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  gap: 1rem;
   align-items: center;
-
-  padding-top: 10rem;
   text-align: center;
   color: ${colors.white};
+  padding: 2rem;
+  gap: 1rem;
 
   h1 {
     font-size: ${fontSizesHeading[300]};

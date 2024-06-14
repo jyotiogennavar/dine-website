@@ -2,15 +2,39 @@
 
 import styled from "styled-components";
 import { colors, fontSizesHeading, fontSizesBody } from "../app/Constants";
-
 import Image from "next/image";
+import PatternDivide from "../public/images/patterns/pattern-divide.svg";
+
 import BeefDesktop from "../public/images/homepage/beef-desktop-tablet.jpg";
 import BeefMobile from "../public/images/homepage/beef-mobile.jpg";
 import ChocolateDesktop from "../public/images/homepage/chocolate-desktop-tablet.jpg";
 import ChocolateMobile from "../public/images/homepage/chocolate-mobile.jpg";
 import SalmonDesktop from "../public/images/homepage/salmon-desktop-tablet.jpg";
 import SalmonMobile from "../public/images/homepage/salmon-mobile.jpg";
-import PatternDivide from "../public/images/patterns/pattern-divide.svg";
+
+const menuItems = [
+  {
+    desktopImg: BeefDesktop,
+    mobileImg: BeefMobile,
+    alt: "Beef dish",
+    title: "Seared Beef Fillet",
+    description: "Our locally sourced beef cooked to perfection and served with a selection of seasonal vegetables."
+  },
+  {
+    desktopImg: ChocolateDesktop,
+    mobileImg: ChocolateMobile,
+    alt: "Chocolate dessert",
+    title: "Chocolate Soufflé",
+    description: "Dark chocolate soufflé with a hint of orange. Served with a side of fresh cream."
+  },
+  {
+    desktopImg: SalmonDesktop,
+    mobileImg: SalmonMobile,
+    alt: "Salmon dish",
+    title: "Summer Salmon Fillet",
+    description: "Roasted salmon fillet with a delicate garlic butter and served with fresh green beans."
+  },
+];
 
 const MenuHighlights = () => {
   return (
@@ -23,64 +47,32 @@ const MenuHighlights = () => {
           our diner’s favorites. Our menu is revamped every season.
         </p>
       </Heading>
-      <MenuHighlight>
-        <picture>
-          <source srcSet={BeefDesktop.src} media="(min-width: 768px)" />
-          <Image
-            src={BeefMobile}
-            alt="Beef dish"
-            layout="fill"
-            objectFit="cover"
-          />
-        </picture>
-      </MenuHighlight>
-      <HighlightContent>
-        <h3>Seared Beef Fillet</h3>
-        <p>
-          Our locally sourced beef cooked to perfection and served with a
-          selection of seasonal vegetables.
-        </p>
-  
-      </HighlightContent>
-      <MenuHighlight>
-        <picture>
-          <source srcSet={ChocolateDesktop.src} media="(min-width: 768px)" />
-          <Image
-            src={ChocolateMobile}
-            alt="Chocolate dessert"
-            layout="fill"
-            objectFit="cover"
-          />
-        </picture>
-      </MenuHighlight>
-      <HighlightContent>
-        <h3>Chocolate Soufflé</h3>
-        <p>
-          Dark chocolate soufflé with a hint of orange. Served with a side of
-          fresh cream.
-        </p>
-      </HighlightContent>
-      <MenuHighlight>
-        <picture>
-          <source srcSet={SalmonDesktop.src} media="(min-width: 768px)" />
-          <Image
-            src={SalmonMobile}
-            alt="Salmon dish"
-            layout="fill"
-            objectFit="cover"
-          />
-        </picture>
-      </MenuHighlight>
-      <HighlightContent>
-        <h3>Summer Salmon Fillet</h3>
-        <p>
-          Roasted salmon fillet with a delicate garlic butter and served with
-          fresh green beans.
-        </p>
-      </HighlightContent>
+      {menuItems.map((item, index) => (
+        <MenuItem key={index} item={item} />
+      ))}
     </MenuHighlightsContainer>
   );
 };
+
+const MenuItem = ({ item }) => (
+  <Container>
+    <MenuHighlight>
+      <picture>
+        <source srcSet={item.desktopImg.src} media="(min-width: 768px)" />
+        <Image
+          src={item.mobileImg}
+          alt={item.alt}
+          layout="fill"
+          objectFit="cover"
+        />
+      </picture>
+    </MenuHighlight>
+    <HighlightContent>
+      <h3>{item.title}</h3>
+      <p>{item.description}</p>
+    </HighlightContent>
+  </Container>
+);
 
 const MenuHighlightsContainer = styled.section`
   display: grid;
@@ -90,8 +82,10 @@ const MenuHighlightsContainer = styled.section`
   background-color: ${colors.primaryDark};
   color: ${colors.white};
 
-  @media (min-width: 768px) {
-    grid-template-columns: repeat(3, 1fr);
+
+
+  @media (min-width: 1024px) {
+     grid-template-columns: repeat(3, 1fr);
   }
 `;
 
@@ -113,6 +107,13 @@ const Heading = styled.div`
     font-size: 1.75rem;
     margin-bottom: 10px;
     line-height: 1.1;
+  }
+`;
+
+const Container = styled.div`
+
+  @media (min-width: 768px) {
+
   }
 `;
 
