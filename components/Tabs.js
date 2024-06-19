@@ -86,7 +86,7 @@ const TabsImage = ({ desktopImg, tabletImg, mobileImg, alt }) => (
     <picture>
       <source srcSet={desktopImg.src} media="(min-width: 1024px)" />
       <source srcSet={tabletImg.src} media="(min-width: 768px)" />
-      <Image src={mobileImg} alt={alt} layout="fill" objectFit="cover" />
+      <Image src={mobileImg} alt={alt} fill objectFit="cover" />
     </picture>
   </StyledTabsImage>
 );
@@ -126,8 +126,6 @@ const TabLinks = styled.div`
     }
   }
 `;
-
-
 
 const StyledTabsContent = styled.div`
   padding: 20px;

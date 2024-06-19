@@ -1,9 +1,12 @@
 "use client";
 
 import styled from "styled-components";
-import { colors, fontSizesHeading, fontSizesBody } from "../app/Constants";
+import {fontSizesHeading, fontSizesBody } from "../app/Constants";
 import Image from "next/image";
+
 import PatternDivide from "../public/images/patterns/pattern-divide.svg";
+import PatterCurveLeft from "../public/images/patterns/pattern-curve-top-left.svg";
+import PatterCurveRight from "../public/images/patterns/pattern-curve-top-right.svg";
 
 import EnjoyablePlaceDesktop from "../public/images/homepage/enjoyable-place-desktop.jpg";
 import EnjoyablePlaceMobile from "../public/images/homepage/enjoyable-place-mobile.jpg";
@@ -30,27 +33,32 @@ const featuresData = [
 const Features = () => {
   return (
     <FeaturesContainer>
-      {featuresData.map((feature, index) => (
-        <Feature key={index} feature={feature} />
+          {featuresData.map((feature, index) => (
+        <Feature key={index} feature={feature} index={index} />
       ))}
     </FeaturesContainer>
   );
 };
 
-const Feature = ({ feature }) => (
+const Feature = ({ feature, index }) => (
   <>
     <ImageContainer>
+
       <picture>
         <source srcSet={feature.desktopImg.src} media="(min-width: 768px)" />
         <Image
           src={feature.mobileImg}
           alt={feature.alt}
-          layout="fill"
+          fill
           objectFit="cover"
         />
       </picture>
     </ImageContainer>
     <FeatureContent>
+    <PatternDecorations>
+        {index === 0 && <PatterCurveRight className="right" />}
+        {index === 1 && <PatterCurveLeft className="left" />}
+      </PatternDecorations>
       <PatternDivide />
       <h3>{feature.title}</h3>
       <p>{feature.description}</p>
@@ -58,17 +66,55 @@ const Feature = ({ feature }) => (
   </>
 );
 
+const PatternDecorations = styled.div`
+  @media (min-width: 768px) {
+    position: absolute;
+    /* top: 0;
+    left: 0; */
+    width: 100%;
+
+    svg {
+      position: absolute;
+      width: auto;
+      height: auto;
+    }
+
+    .left {
+      top: 207px;
+      left: 532px;
+      transform: translate(-50%, -50%);
+    }
+
+    .right {
+      top: 0;
+      left: -713px;
+      transform: translate(50%, -50%);
+    }
+  }
+`;
+
 const FeaturesContainer = styled.section`
   display: grid;
   grid-template-columns: 1fr;
   gap: 1.25rem;
   padding: 1rem;
   margin-top: -5rem;
+
+  @media (min-width: 768px) {
+    gap: 2.25rem;
+    padding: 5rem;
+    margin-top: -10rem;
+  }
 `;
 
 const ImageContainer = styled.div`
   position: relative;
   height: 400px;
+
+  @media (min-width: 768px) {
+    height: 360px;
+  
+  }
 `;
 
 const FeatureContent = styled.div`
@@ -92,6 +138,19 @@ const FeatureContent = styled.div`
   p {
     font-size: ${fontSizesBody[100]};
   }
+
+  @media (min-width: 768px) {
+    padding: 50px 70px;
+    h3 {
+      font-size: ${fontSizesHeading[400]};
+    }
+
+    p {
+      font-size: ${fontSizesBody[200]};
+    }
+  }
 `;
+
+
 
 export default Features;

@@ -4,16 +4,21 @@ import styled from "styled-components";
 import { colors, fontSizesHeading, fontSizesBody } from "../app/Constants";
 import { ButtonLight } from "./Button";
 
-import Logo from "../public/images/logo.svg";
+
 import Image from "next/image";
+import Logo from "../public/images/logo.svg";
 import HeaderImageDesktop from "../public/images/homepage/hero-bg-desktop.jpg";
 import HeaderImageMobile from "../public/images/homepage/hero-bg-mobile.jpg";
 import HeaderImageTablet from "../public/images/homepage/hero-bg-tablet.jpg";
 
+
+
 const Header = () => {
   return (
     <HeaderContainer>
-      <HeaderImage />
+ 
+        <HeaderImage />
+
       <HeaderContent>
         <Logo width={110} height={50} />
         <h1>Exquisite dining since 1989</h1>
@@ -27,6 +32,7 @@ const Header = () => {
   );
 };
 
+
 const HeaderImage = () => (
   <picture>
     <source srcSet={HeaderImageDesktop.src} media="(min-width: 1024px)" />
@@ -34,8 +40,8 @@ const HeaderImage = () => (
     <Image
       src={HeaderImageMobile}
       alt="Header Image"
-      layout="fill"
-      objectFit="cover"
+      fill
+      objectFit = "cover"
     />
   </picture>
 );
@@ -47,7 +53,7 @@ const HeaderContainer = styled.section`
   background: ${colors.primaryDark};
 
   @media (min-width: 768px) {
-    height: 500px;
+    height: 948px;
   }
 
   @media (min-width: 1024px) {
@@ -78,6 +84,22 @@ const HeaderContent = styled.div`
   p {
     font-size: ${fontSizesBody[100]};
     margin-bottom: 20px;
+  }
+
+  @media (min-width: 768px) {
+    padding: 0;
+    top: 60%;
+    left: 20%;
+  transform: translate(-12%, -50%);
+
+    h1 {
+      font-size: ${fontSizesHeading[400]};
+      max-width: 20rem;
+    }
+
+    p {
+      font-size: ${fontSizesBody[200]};
+    }
   }
 `;
 

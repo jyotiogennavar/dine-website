@@ -6,6 +6,8 @@ import { colors, fontSizesBody} from '../app/Constants';
 export const Button = styled.button`
   background-color: transparent;
   color: ${colors.primaryDark};
+  width: 245px;
+  height: 64px;
   font-weight: bold;
   font-size: ${fontSizesBody[100]};
   letter-spacing: 2.5px;

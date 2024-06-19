@@ -21,16 +21,16 @@ const ReservationBanner = () => {
 };
 
 const ResponsiveImage = () => (
-  <picture>
+  <Picture>
     <source srcSet={BannerImageDesktop.src} media="(min-width: 1024px)" />
     <source srcSet={BannerImageTablet.src} media="(min-width: 768px)" />
     <Image
       src={BannerImageMobile}
       alt="Reservation Banner"
-      layout="fill"
+      fill
       objectFit="cover"
     />
-  </picture>
+  </Picture>
 );
 
 const BannerContainer = styled.section`
@@ -75,4 +75,7 @@ const BannerContent = styled.div`
   }
 `;
 
+const Picture = styled.picture`
+  position: relative;
+`;
 export default ReservationBanner;

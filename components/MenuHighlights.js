@@ -62,7 +62,7 @@ const MenuItem = ({ item }) => (
         <Image
           src={item.mobileImg}
           alt={item.alt}
-          layout="fill"
+          fill
           objectFit="cover"
         />
       </picture>
@@ -79,8 +79,13 @@ const MenuHighlightsContainer = styled.section`
   grid-template-columns: 1fr;
   gap: 1.25rem;
   padding: 1rem;
+  margin: 0 auto;
   background-color: ${colors.primaryDark};
   color: ${colors.white};
+
+  @media (min-width: 768px) {
+    
+  }
 
 
 
@@ -108,18 +113,36 @@ const Heading = styled.div`
     margin-bottom: 10px;
     line-height: 1.1;
   }
+
+  @media (min-width: 768px) { 
+     max-width: 70%;
+      margin: 0 auto;
+    h2  {
+      font-size: ${fontSizesHeading[400]};
+    }
+
+    p {
+    
+    }
+    
+  }
 `;
 
 const Container = styled.div`
-
+  /* position: relative; */
   @media (min-width: 768px) {
-
+    display: flex;
+    align-items: center;
+    gap: 1rem;
   }
 `;
 
 const MenuHighlight = styled.div`
   position: relative;
   height: 245px;
+  @media (min-width: 768px) {
+    height: 96px;
+  }
 `;
 
 const HighlightContent = styled.div`
@@ -135,6 +158,11 @@ const HighlightContent = styled.div`
 
   p {
     font-size: ${fontSizesBody[100]};
+  }
+
+  @media (min-width: 768px) {
+    text-align: left;
+    border: none;
   }
 `;
 
