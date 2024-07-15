@@ -47,9 +47,14 @@ const MenuHighlights = () => {
           our diner’s favorites. Our menu is revamped every season.
         </p>
       </Heading>
-      {menuItems.map((item, index) => (
+      <MenuItemList>
+          {menuItems.map((item, index) => (
         <MenuItem key={index} item={item} />
       ))}
+
+      </MenuItemList>
+  
+
     </MenuHighlightsContainer>
   );
 };
@@ -87,12 +92,14 @@ const MenuHighlightsContainer = styled.section`
     
   }
 
-
-
   @media (min-width: 1024px) {
-     grid-template-columns: repeat(3, 1fr);
+     grid-template-columns: repeat(2, 1fr);
+      padding-top: 8rem;
+      margin-top: -10rem;
   }
 `;
+
+const MenuItemList = styled.div``;
 
 const Heading = styled.div`
   text-align: center;
@@ -116,7 +123,8 @@ const Heading = styled.div`
 
   @media (min-width: 768px) { 
      max-width: 70%;
-      margin: 0 auto;
+      margin: 2rem auto;
+      text-align: left;
     h2  {
       font-size: ${fontSizesHeading[400]};
     }
@@ -129,11 +137,15 @@ const Heading = styled.div`
 `;
 
 const Container = styled.div`
-  /* position: relative; */
+ display: flex;
+  gap: 1.25rem;
+
   @media (min-width: 768px) {
-    display: flex;
+    /* display: flex;
     align-items: center;
-    gap: 1rem;
+    gap: 1rem; */
+
+    
   }
 `;
 
@@ -142,6 +154,11 @@ const MenuHighlight = styled.div`
   height: 245px;
   @media (min-width: 768px) {
     height: 96px;
+    width: 100px;
+  }
+
+  @media (min-width: 1024px) {
+
   }
 `;
 
@@ -164,6 +181,8 @@ const HighlightContent = styled.div`
     text-align: left;
     border: none;
   }
+
+
 `;
 
 export default MenuHighlights;
