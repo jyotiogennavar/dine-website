@@ -1,95 +1,104 @@
 "use client";
 
 import styled from "styled-components";
-import {fontSizesHeading, fontSizesBody } from "../app/Constants";
+import { fontSizesHeading, fontSizesBody } from "../app/Constants";
 import Image from "next/image";
 
 import PatternDivide from "../public/images/patterns/pattern-divide.svg";
-import PatterCurveLeft from "../public/images/patterns/pattern-curve-top-left.svg";
-import PatterCurveRight from "../public/images/patterns/pattern-curve-top-right.svg";
+import PatternCurveLeft from "../public/images/patterns/pattern-curve-top-left.svg";
+import PatternCurveRight from "../public/images/patterns/pattern-curve-top-right.svg";
 
 import EnjoyablePlaceDesktop from "../public/images/homepage/enjoyable-place-desktop.jpg";
 import EnjoyablePlaceMobile from "../public/images/homepage/enjoyable-place-mobile.jpg";
 import LocallySourcedDesktop from "../public/images/homepage/locally-sourced-desktop.jpg";
 import LocallySourcedMobile from "../public/images/homepage/locally-sourced-mobile.jpg";
 
-const featuresData = [
-  {
-    desktopImg: EnjoyablePlaceDesktop,
-    mobileImg: EnjoyablePlaceMobile,
-    alt: "Enjoyable Place",
-    title: "Enjoyable place for all the family",
-    description: "Our relaxed surroundings make dining with us a great experience for everyone. We can even arrange a tour of the farm before your meal."
-  },
-  {
-    desktopImg: LocallySourcedDesktop,
-    mobileImg: LocallySourcedMobile,
-    alt: "Locally Sourced",
-    title: "The most locally sourced ingredients",
-    description: "All our ingredients come directly from our farm or local fishery. So you can be sure that you’re eating the freshest, most sustainable food."
-  }
-];
-
 const Features = () => {
   return (
     <FeaturesContainer>
-          {featuresData.map((feature, index) => (
-        <Feature key={index} feature={feature} index={index} />
-      ))}
+      <Wrapper>
+        <ImageContainer>
+          <picture>
+            <source
+              srcSet={EnjoyablePlaceDesktop.src}
+              media="(min-width: 768px)"
+            />
+            <Image
+              src={EnjoyablePlaceMobile}
+              alt={"Enjoyable Place"}
+              fill
+              objectFit="cover"
+            />
+          </picture>
+          <PatternRight />
+        </ImageContainer>
+
+        <FeatureContent>
+          <PatternDivide />
+          <h3>Enjoyable place for all the family</h3>
+          <p>
+            Our relaxed surroundings make dining with us a great experience for
+            everyone. We can even arrange a tour of the farm before your meal.
+          </p>
+        </FeatureContent>
+      </Wrapper>
+      <Wrapper>
+        <FeatureContent>
+          <PatternDivide />
+          <h3>The most locally sourced ingredients</h3>
+          <p>
+            All our ingredients come directly from our farm or local fishery. So
+            you can be sure that you’re eating the freshest, most sustainable
+            food.
+          </p>
+        </FeatureContent>
+
+        <ImageContainer>
+          <PatternLeft />
+          <picture>
+            <source
+              srcSet={LocallySourcedDesktop.src}
+              media="(min-width: 768px)"
+            />
+            <Image
+              src={LocallySourcedMobile}
+              alt={"Locally Sourced"}
+              fill
+              objectFit="cover"
+            />
+          </picture>
+        </ImageContainer>
+      </Wrapper>
     </FeaturesContainer>
   );
 };
 
-const Feature = ({ feature, index }) => (
-  <>
-    <ImageContainer>
+const Wrapper = styled.div`
+  @media (min-width: 1024px) {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8rem;
+  }
+`;
 
-      <picture>
-        <source srcSet={feature.desktopImg.src} media="(min-width: 768px)" />
-        <Image
-          src={feature.mobileImg}
-          alt={feature.alt}
-          fill
-          objectFit="cover"
-        />
-      </picture>
-    </ImageContainer>
-    <FeatureContent>
-    <PatternDecorations>
-        {index === 0 && <PatterCurveRight className="right" />}
-        {index === 1 && <PatterCurveLeft className="left" />}
-      </PatternDecorations>
-      <PatternDivide />
-      <h3>{feature.title}</h3>
-      <p>{feature.description}</p>
-    </FeatureContent>
-  </>
-);
-
-const PatternDecorations = styled.div`
+const PatternLeft = styled(PatternCurveLeft)`
   @media (min-width: 768px) {
     position: absolute;
-    /* top: 0;
-    left: 0; */
     width: 100%;
+    top: 420px;
+    left: 20px;
+    transform: translate(-50%, -50%);
+  }
+`;
 
-    svg {
-      position: absolute;
-      width: auto;
-      height: auto;
-    }
-
-    .left {
-      top: 207px;
-      left: 532px;
-      transform: translate(-50%, -50%);
-    }
-
-    .right {
-      top: 0;
-      left: -713px;
-      transform: translate(50%, -50%);
-    }
+const PatternRight = styled(PatternCurveRight)`
+  @media (min-width: 768px) {
+    position: absolute;
+    width: 100%;
+    top: 0;
+    left: -713px;
+    transform: translate(50%, -50%);
   }
 `;
 
@@ -102,7 +111,7 @@ const FeaturesContainer = styled.section`
 
   @media (min-width: 768px) {
     gap: 2.25rem;
-    padding: 5rem;
+    padding: 7rem;
     margin-top: -10rem;
   }
 `;
@@ -113,7 +122,15 @@ const ImageContainer = styled.div`
 
   @media (min-width: 768px) {
     height: 360px;
-  
+  }
+
+  @media (min-width: 1024px) {
+    /* width: 680px; */
+    height: 720px;
+
+    picture {
+      width: 540px;
+    }
   }
 `;
 
@@ -140,7 +157,8 @@ const FeatureContent = styled.div`
   }
 
   @media (min-width: 768px) {
-    padding: 50px 70px;
+    text-align: left;
+    width: 40%;
     h3 {
       font-size: ${fontSizesHeading[400]};
     }
@@ -148,9 +166,13 @@ const FeatureContent = styled.div`
     p {
       font-size: ${fontSizesBody[200]};
     }
+
+    svg {
+      position: absolute;
+      left: 11%;
+      transform: translate(-50%, -50%);
+    }
   }
 `;
-
-
 
 export default Features;

@@ -4,20 +4,16 @@ import styled from "styled-components";
 import { colors, fontSizesHeading, fontSizesBody } from "../app/Constants";
 import { ButtonLight } from "./Button";
 
-
 import Image from "next/image";
 import Logo from "../public/images/logo.svg";
 import HeaderImageDesktop from "../public/images/homepage/hero-bg-desktop.jpg";
 import HeaderImageMobile from "../public/images/homepage/hero-bg-mobile.jpg";
 import HeaderImageTablet from "../public/images/homepage/hero-bg-tablet.jpg";
 
-
-
 const Header = () => {
   return (
     <HeaderContainer>
- 
-        <HeaderImage />
+      <HeaderImage />
 
       <HeaderContent>
         <Logo width={110} height={50} />
@@ -32,17 +28,11 @@ const Header = () => {
   );
 };
 
-
 const HeaderImage = () => (
   <picture>
     <source srcSet={HeaderImageDesktop.src} media="(min-width: 1024px)" />
     <source srcSet={HeaderImageTablet.src} media="(min-width: 768px)" />
-    <Image
-      src={HeaderImageMobile}
-      alt="Header Image"
-      fill
-      objectFit = "cover"
-    />
+    <Image src={HeaderImageMobile} alt="Header Image" fill objectFit="cover" />
   </picture>
 );
 
@@ -57,7 +47,7 @@ const HeaderContainer = styled.section`
   }
 
   @media (min-width: 1024px) {
-    height: 500px;
+    height: 820px;
   }
 `;
 
@@ -90,7 +80,7 @@ const HeaderContent = styled.div`
     padding: 0;
     top: 60%;
     left: 20%;
-  transform: translate(-12%, -50%);
+    transform: translate(-12%, -50%);
 
     h1 {
       font-size: ${fontSizesHeading[400]};
@@ -99,6 +89,32 @@ const HeaderContent = styled.div`
 
     p {
       font-size: ${fontSizesBody[200]};
+    }
+  }
+
+  @media (min-width: 1024px) {
+    top: 40%;
+    left: 25%;
+    transform: translate(-50%, -50%);
+    text-align: left;
+    align-items: flex-start;
+
+    gap: 1rem;
+
+    svg {
+      margin-bottom: 10rem;
+    }
+
+    h1 {
+      font-size: ${fontSizesHeading[500]};
+      line-height: 1.1;
+      margin-bottom: 0;
+      max-width: 25rem;
+    }
+
+    p {
+      font-size: ${fontSizesBody[200]};
+      max-width: 25rem;
     }
   }
 `;
