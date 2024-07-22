@@ -61,22 +61,25 @@ const Tabs = () => {
         mobileImg={tabData[activeTab].mobileImg}
         alt={tabData[activeTab].title}
       />
-      <TabLinks>
-        {tabData.map((tab, index) => (
-          <p
-            key={index}
-            onClick={() => handleTabClick(index)}
-            className={activeTab === index ? "active" : ""}
-          >
-            {tab.title}
-          </p>
-        ))}
-      </TabLinks>
-      <TabsContent
-        title={tabData[activeTab].title}
-        content={tabData[activeTab].content}
-      />
-      <Button>Book a table</Button>
+      <div>
+        <TabLinks>
+          <TabsContent
+            title={tabData[activeTab].title}
+            content={tabData[activeTab].content}
+          /><Button>Book a table</Button>
+          {tabData.map((tab, index) => (
+            <p
+              key={index}
+              onClick={() => handleTabClick(index)}
+              className={activeTab === index ? "active" : ""}
+            >
+              {tab.title}
+            </p>
+          ))}
+        </TabLinks>
+
+        
+      </div>
     </TabsContainer>
   );
 };
@@ -98,11 +101,18 @@ const TabsContent = ({ title, content }) => (
   </StyledTabsContent>
 );
 
+
+
 const TabsContainer = styled.section`
   display: grid;
   grid-template-columns: 1fr;
   gap: 1.25rem;
-  padding: 1rem;
+  margin: 1rem;
+
+  @media (min-width: 1024px) {
+    grid-template-columns: repeat(2, 1fr);
+    margin: 2rem 7rem;
+  }
 `;
 
 const TabLinks = styled.div`
@@ -125,6 +135,13 @@ const TabLinks = styled.div`
       border-bottom: 2px solid ${colors.primaryLight};
     }
   }
+
+  @media (min-width: 1024px) {
+    align-items: flex-start;
+    padding: 2rem;
+    margin-top: 2rem;
+    
+  }
 `;
 
 const StyledTabsContent = styled.div`
@@ -139,16 +156,40 @@ const StyledTabsContent = styled.div`
     transform: translateX(-50%);
   }
 
-  h3 {
+  h2 {
     margin-top: 2rem;
     font-size: ${fontSizesHeading[200]};
     margin-bottom: 10px;
   }
+
+  p {
+    font-size: ${fontSizesBody[100]};
+  }
+
+  @media (min-width: 1024px) {
+    text-align: left;
+    padding: 0;
+
+    h2 {
+      font-size: ${fontSizesHeading[500]};
+    }
+
+    p {
+      font-size: ${fontSizesBody[200]};
+    }
+
+
+  }
 `;
+
 
 const StyledTabsImage = styled.div`
   position: relative;
   height: 400px;
+
+  @media (min-width: 1024px) {
+    height: 600px;
+  }
 `;
 
 export default Tabs;
